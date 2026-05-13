@@ -1,0 +1,172 @@
+---
+import { Image } from "astro:assets";
+import logoImg from "../assets/trvalope logo.png";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Blog", href: "/blog" },
+  { name: "FAQs", href: "/faqs" },
+  { name: "Privacy", href: "/privacy" },
+  { name: "Refund", href: "/refund" },
+  { name: "Contact", href: "/contact" },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="navbar"
+  class="fixed w-full top-0 z-50 bg-transparent border-b border-transparent transition-all duration-500"
+>
+  <div class="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+    <div
+      class="flex h-24 items-center justify-between transition-all duration-500"
+      id="navbar-container"
+    >
+      <!-- Brand Logo (Left) -->
+      <div class="flex-shrink-0 lg:w-64">
+        <a href="/" class="flex items-center group">
+          <Image
+            src={logoImg}
+            alt="Travelope Logo"
+            class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Nav Links (Center) -->
+      <nav class="hidden lg:flex flex-1 justify-center">
+        <ul class="flex items-center space-x-4 xl:space-x-8">
+          {
+            navLinks.map((link) => {
+              const isActive =
+                currentPath === link.href ||
+                (link.href !== "/" && currentPath.startsWith(link.href));
+              return (
+                <li>
+                  <a
+                    href={link.href}
+                    class={`font-bold text-[13px] xl:text-sm tracking-widest uppercase transition-colors drop-shadow-md ${isActive ? "text-[#f97316]" : "text-white hover:text-[#f97316]"}`}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+
+      <!-- CTA Button (Right) -->
+      <div class="hidden lg:flex flex-shrink-0 lg:w-64 justify-end">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#f97316] text-white font-extrabold text-sm tracking-wide hover:bg-white hover:text-[#0a2540] transition-all shadow-[0_10px_20px_rgba(249,115,22,0.3)] hover:-translate-y-0.5"
+        >
+          Book Consultation
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="lg:hidden flex items-center">
+        <button
+          id="mobile-menu-btn"
+          class="text-white hover:text-[#f97316] focus:outline-none drop-shadow-md"
+        >
+          <svg
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              id="mobile-menu-icon"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden bg-[#0a2540]/90 backdrop-blur-xl border-b border-white/10 absolute w-full left-0"
+  >
+    <ul class="px-4 pt-4 pb-8 space-y-4 shadow-2xl">
+      {
+        navLinks.map((link) => {
+          const isActive =
+            currentPath === link.href ||
+            (link.href !== "/" && currentPath.startsWith(link.href));
+          return (
+            <li>
+              <a
+                href={link.href}
+                class={`block px-4 py-3 rounded-xl text-base font-bold tracking-wider transition-colors ${isActive ? "text-[#f97316] bg-white/5" : "text-slate-200 hover:bg-white/10 hover:text-[#f97316]"}`}
+              >
+                {link.name}
+              </a>
+            </li>
+          );
+        })
+      }
+      <li class="pt-4 px-4">
+        <a
+          href="/contact"
+          class="block w-full text-center px-6 py-4 rounded-full bg-[#f97316] text-white font-extrabold text-base tracking-wide hover:bg-white hover:text-[#0a2540] transition-colors shadow-lg"
+        >
+          Book Consultation
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const icon = document.getElementById("mobile-menu-icon");
+  const navbar = document.getElementById("navbar");
+  const navContainer = document.getElementById("navbar-container");
+
+  if (btn && menu && icon) {
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      if (menu.classList.contains("hidden")) {
+        icon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+      } else {
+        icon.setAttribute("d", "M6 18L18 6M6 6l12 12");
+      }
+    });
+  }
+
+  // Scroll effect to shrink navbar and adjust opacity
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add(
+        "bg-[#0a2540]/30",
+        "shadow-lg",
+        "backdrop-blur-xl",
+        "border-white/10",
+      );
+      navbar?.classList.remove("bg-transparent", "border-transparent");
+      navContainer?.classList.remove("h-24");
+      navContainer?.classList.add("h-20");
+    } else {
+      navbar?.classList.add("bg-transparent", "border-transparent");
+      navbar?.classList.remove(
+        "bg-[#0a2540]/30",
+        "shadow-lg",
+        "backdrop-blur-xl",
+        "border-white/10",
+      );
+      navContainer?.classList.add("h-24");
+      navContainer?.classList.remove("h-20");
+    }
+  });
+</script>

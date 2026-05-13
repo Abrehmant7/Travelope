@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0a2540; /* Navy Blue from Logo */
+  --color-primary-light: #16385d; 
+  --color-accent: #f97316; /* Vibrant Orange from Logo */
+  --color-accent-light: #fdba74; 
+}

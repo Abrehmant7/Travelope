@@ -1,0 +1,31 @@
+---
+const steps = [
+  { num: '01', title: 'Profile Analysis', desc: 'We evaluate your travel history, financial standing, and passport strength to identify optimal destinations and visa routes.' },
+  { num: '02', title: 'Strategic Planning', desc: 'Our team crafts a meticulous itinerary and secures elusive embassy appointments tailored to your timeline.' },
+  { num: '03', title: 'Document Audit', desc: 'Every application file is subjected to a rigorous internal audit to ensure 100% compliance with consular requirements.' },
+  { num: '04', title: 'Departure', desc: 'With visa in hand and accommodations booked, you receive 24/7 global support from takeoff to safe return.' }
+];
+---
+<section class="py-24 bg-slate-50 relative border-b border-slate-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-20">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[#0a2540] tracking-tight mb-4">The Travelope <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f97316] to-[#fdba74]">Blueprint</span></h2>
+      <p class="text-slate-600 font-medium max-w-2xl mx-auto text-lg">A systematic, stress-free methodology to executing international travel.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <!-- Desktop Connecting Line -->
+      <div class="hidden lg:block absolute top-12 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f97316]/30 to-transparent z-0"></div>
+      
+      {steps.map((step) => (
+        <div class="relative z-10 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 rounded-2xl bg-white border-2 border-slate-100 flex items-center justify-center mb-8 shadow-xl group-hover:border-[#f97316] group-hover:bg-[#0a2540] transition-all duration-500 group-hover:-translate-y-2">
+            <span class="text-4xl font-black text-[#0a2540] group-hover:text-white transition-colors">{step.num}</span>
+          </div>
+          <h3 class="text-xl font-extrabold text-[#0a2540] mb-3">{step.title}</h3>
+          <p class="text-slate-600 font-medium leading-relaxed">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Cta from '../../components/Cta.astro';
+import { Image } from 'astro:assets';
+
+// Imports
+import imgGreece from '../../assets/trending/Greece.jpg';
+import imgEstonia from '../../assets/trending/estonia.jpg';
+import imgFrance from '../../assets/trending/france.jpg';
+import imgIceland from '../../assets/trending/iceland.jpg';
+import imgItaly from '../../assets/trending/italy.jpg';
+import imgNetherlands from '../../assets/trending/netherlands.jpg';
+import imgPortugal from '../../assets/trending/portugal.jpg';
+import imgSwitzerland from '../../assets/trending/switzerland.jpg';
+
+export function getStaticPaths() {
+  const destinations = [
+    { name: 'Greece', slug: 'greece', image: imgGreece, desc: 'Experience the ancient ruins, vibrant culture, and stunning islands of Greece.' },
+    { name: 'Portugal', slug: 'portugal', image: imgPortugal, desc: 'Discover the rich history, stunning coastline, and beautiful cities of Portugal.' },
+    { name: 'Estonia', slug: 'estonia', image: imgEstonia, desc: 'Explore the medieval architecture and modern digital society of Estonia.' },
+    { name: 'Netherlands', slug: 'netherlands', image: imgNetherlands, desc: 'Experience the iconic canals, vibrant tulip fields, and historic windmills of the Netherlands.' },
+    { name: 'France', slug: 'france', image: imgFrance, desc: 'Immerse yourself in the art, fashion, gastronomy, and culture of France.' },
+    { name: 'Switzerland', slug: 'switzerland', image: imgSwitzerland, desc: 'Discover the breathtaking Alps, pristine lakes, and world-class chocolates of Switzerland.' },
+    { name: 'Iceland', slug: 'iceland', image: imgIceland, desc: 'Witness the dramatic landscapes, geysers, hot springs, and auroras of Iceland.' },
+    { name: 'Italy', slug: 'italy', image: imgItaly, desc: 'Explore the ancient history, exquisite cuisine, and timeless art of Italy.' },
+  ];
+
+  return destinations.map(dest => ({
+    params: { country: dest.slug },
+    props: { dest },
+  }));
+}
+
+const { dest } = Astro.props;
+---
+
+<Layout title={`Travelope | Visa for ${dest.name}`}>
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-[#0a2540]">
+    <div class="absolute inset-0 z-0">
+      <Image 
+        src={dest.image} 
+        alt={dest.name} 
+        widths={[640, 1024, 1920]}
+        sizes="(max-width: 768px) 640px, (max-width: 1280px) 1024px, 1920px"
+        format="webp"
+        fetchpriority="high"
+        loading="eager"
+        class="w-full h-full object-cover opacity-40" 
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0a2540] via-[#0a2540]/60 to-transparent"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 drop-shadow-lg">
+        {dest.name} <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f97316] to-[#fdba74]">Visa</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">
+        {dest.desc}
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100">
+        <h2 class="text-3xl font-bold text-[#0a2540] mb-6">Visa Requirements for {dest.name}</h2>
+        <div class="space-y-6 text-slate-600 leading-relaxed font-medium">
+          <p>Traveling to {dest.name} requires a Schengen Visa for many nationalities. At Travelope, we handle the entire application process, ensuring your dossier meets all embassy requirements.</p>
+          <ul class="list-disc pl-6 space-y-3">
+            <li>Completed Visa Application Form</li>
+            <li>Valid Passport (with at least 3 months validity beyond planned stay)</li>
+            <li>Two recent passport-sized photographs</li>
+            <li>Travel itinerary and flight reservations</li>
+            <li>Proof of accommodation in {dest.name}</li>
+            <li>Travel Insurance covering the Schengen Area</li>
+            <li>Proof of sufficient financial means</li>
+          </ul>
+          <div class="mt-8 p-6 bg-orange-50 border border-orange-100 rounded-2xl">
+            <h3 class="text-lg font-bold text-[#f97316] mb-2">Ready to apply?</h3>
+            <p class="text-[#0a2540] mb-4">Contact our visa experts today to begin your application for {dest.name}.</p>
+            <a href="/contact" class="inline-block bg-[#f97316] text-white font-bold py-3 px-8 rounded-xl hover:bg-[#0a2540] transition-colors shadow-lg">Start Application</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Layout>

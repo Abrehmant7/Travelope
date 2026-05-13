@@ -1,0 +1,121 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Cta from "../../components/Cta.astro";
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+    const posts = Object.values(
+        import.meta.glob("../../posts/*.md", { eager: true }),
+    );
+
+    return posts.map((post: any) => ({
+        params: { slug: post.frontmatter.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/blog/*.{jpeg,jpg,png,gif}",
+    { eager: true }
+);
+
+const imagePath = `/src/assets/blog/${post.frontmatter.image}`;
+const image = images[imagePath]?.default;
+---
+
+<Layout title={`${post.frontmatter.title} | Travelope Blog`}>
+    <!-- Hero Section -->
+    <div class="relative pt-40 pb-32 w-full bg-[#0a2540] overflow-hidden">
+        {image && (
+            <Image
+                src={image}
+                alt={post.frontmatter.title}
+                widths={[360, 480, 640, 1024, 1920]}
+                quality={80}
+                sizes="100vw"
+                format="webp"
+                class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay"
+            />
+        )}
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-50 via-[#0a2540]/60 to-transparent"></div>
+
+        <!-- Text Overlay Wrapper -->
+        <div class="relative z-10 w-full mt-8 md:mt-16">
+            <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 w-full">
+                <div class="flex flex-wrap items-center gap-3 text-sm font-bold uppercase tracking-wider mb-6">
+                    {post.frontmatter.tags?.[0] && (
+                        <span class="bg-[#f97316] text-white px-4 py-1.5 rounded-full shadow-sm">
+                            {post.frontmatter.tags[0]}
+                        </span>
+                    )}
+                    <span class="text-slate-300 font-medium">
+                        {new Date(post.frontmatter.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-8 drop-shadow-md">
+                    {post.frontmatter.title}
+                </h1>
+                
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center text-[#f97316] font-bold text-xl shadow-inner">
+                        {post.frontmatter.author.charAt(0)}
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-300 uppercase tracking-widest mb-0.5">Written by</p>
+                        <p class="text-lg font-bold text-white">{post.frontmatter.author}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <article class="py-20 bg-slate-50">
+        <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 md:p-12 lg:p-16">
+                <div class="prose prose-lg max-w-none text-slate-600">
+                    <style is:inline>
+                        .prose h1 { font-size: 2.25rem; font-weight: 900; color: #0a2540; margin-bottom: 1.5rem; margin-top: 2rem; }
+                        .prose h2 { font-size: 1.875rem; font-weight: 800; color: #0a2540; margin-bottom: 1rem; margin-top: 3rem; }
+                        .prose h3 { font-size: 1.5rem; font-weight: 700; color: #0a2540; margin-bottom: 0.75rem; margin-top: 2rem; }
+                        .prose p { margin-bottom: 1.5rem; line-height: 1.8; }
+                        .prose ul { list-style-type: disc; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+                        .prose ul li { margin-bottom: 0.5rem; }
+                        .prose ol { list-style-type: decimal; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+                        .prose ol li { margin-bottom: 0.5rem; }
+                        .prose strong { font-weight: 700; color: #0a2540; }
+                        .prose a { color: #f97316; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+                        .prose a:hover { color: #0a2540; }
+                        .prose blockquote { border-left: 4px solid #f97316; padding-left: 1.5rem; font-style: italic; color: #64748b; margin: 2rem 0; background: #fff7ed; padding: 1.5rem; border-radius: 0 1rem 1rem 0; }
+                    </style>
+                    <Content />
+                </div>
+
+                <!-- Share/Tags Footer -->
+                <div class="mt-16 pt-8 border-t border-slate-100">
+                    <div class="flex flex-wrap gap-3">
+                        {post.frontmatter.tags?.map((tag: any) => (
+                            <span class="px-5 py-2 bg-slate-50 border border-slate-200 text-[#0a2540] rounded-full text-sm font-bold tracking-wide hover:border-[#f97316] hover:text-[#f97316] transition-colors cursor-pointer">
+                                #{tag}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="mt-16 text-center">
+                <a href="/blog" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white border border-slate-200 text-[#0a2540] font-bold tracking-wide hover:bg-[#0a2540] hover:text-white hover:border-[#0a2540] transition-all shadow-sm">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path></svg>
+                    Back to all articles
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <Cta />
+</Layout>

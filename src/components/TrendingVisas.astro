@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+
+// Imports
+import imgGreece from '../assets/trending/Greece.jpg';
+import imgEstonia from '../assets/trending/estonia.jpg';
+import imgFrance from '../assets/trending/france.jpg';
+import imgIceland from '../assets/trending/iceland.jpg';
+import imgItaly from '../assets/trending/italy.jpg';
+import imgNetherlands from '../assets/trending/netherlands.jpg';
+import imgPortugal from '../assets/trending/portugal.jpg';
+import imgSwitzerland from '../assets/trending/switzerland.jpg';
+
+const trendingDestinations = [
+  { name: 'Greece', slug: 'greece', image: imgGreece, region: 'Southern Europe' },
+  { name: 'Portugal', slug: 'portugal', image: imgPortugal, region: 'Western Europe' },
+  { name: 'Estonia', slug: 'estonia', image: imgEstonia, region: 'Northern Europe' },
+  { name: 'Netherlands', slug: 'netherlands', image: imgNetherlands, region: 'Western Europe' },
+  { name: 'France', slug: 'france', image: imgFrance, region: 'Western Europe' },
+  { name: 'Switzerland', slug: 'switzerland', image: imgSwitzerland, region: 'Central Europe' },
+  { name: 'Iceland', slug: 'iceland', image: imgIceland, region: 'Northern Europe' },
+  { name: 'Italy', slug: 'italy', image: imgItaly, region: 'Southern Europe' },
+];
+---
+
+<section class="py-24 bg-slate-50 relative border-b border-slate-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[#0a2540] tracking-tight mb-4">Trending <span class="text-[#f97316]">Destinations</span></h2>
+      <p class="text-slate-500 font-medium max-w-2xl mx-auto text-lg">Explore the most sought-after Schengen countries for your next adventure.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {trendingDestinations.map(dest => (
+        <a href={`/countries/${dest.slug}`} class="group relative rounded-[2rem] overflow-hidden aspect-[4/5] block shadow-lg hover:shadow-2xl transition-all duration-500">
+          <!-- Image -->
+          <div class="absolute inset-0 w-full h-full">
+            <Image 
+              src={dest.image} 
+              alt={`${dest.name} Visa`}
+              widths={[300, 600, 900]}
+              sizes="(max-width: 640px) 300px, (max-width: 1024px) 600px, 900px"
+              format="webp"
+              loading="lazy"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+            />
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0a2540] via-[#0a2540]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+          </div>
+          
+          <!-- Content -->
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-[#f97316] font-bold text-xs uppercase tracking-widest mb-1">{dest.region}</p>
+              <h3 class="text-3xl font-black text-white tracking-tight mb-2">{dest.name}</h3>
+              <div class="flex items-center gap-2 text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                <span class="text-sm font-medium">View Visa Details</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

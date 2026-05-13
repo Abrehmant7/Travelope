@@ -1,0 +1,103 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '@fontsource/plus-jakarta-sans/400.css';
+import '@fontsource/plus-jakarta-sans/500.css';
+import '@fontsource/plus-jakarta-sans/600.css';
+import '@fontsource/plus-jakarta-sans/700.css';
+import '@fontsource/plus-jakarta-sans/800.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Travelope - Your gateway to custom vacation destinations and seamless visa bookings." />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<title>{title}</title>
+	</head>
+	<body class="flex flex-col min-h-screen relative font-['Plus_Jakarta_Sans'] bg-slate-50 text-slate-800 antialiased selection:bg-[#f97316] selection:text-white overflow-x-hidden w-full">
+		<Navbar />
+		<main class="flex-grow w-full relative z-10">
+			<slot />
+		</main>
+		<Footer />
+
+		<script>
+			function initGlobalTypewriter() {
+				// Disable animation on mobile devices to prevent layout jitter and horizontal scrolling
+				if (window.innerWidth < 768) return;
+
+				const spans = document.querySelectorAll(
+					'h1 span.text-\\[\\#f97316\\], h2 span.text-\\[\\#f97316\\], h3 span.text-\\[\\#f97316\\], h1 span.bg-clip-text, h2 span.bg-clip-text, h3 span.bg-clip-text'
+				);
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const el = entry.target;
+							if (el.dataset.typing === 'true') return;
+							el.dataset.typing = 'true';
+							
+							const text = el.dataset.text || el.textContent.trim();
+							el.dataset.text = text;
+							el.textContent = '';
+							
+							const textNode = document.createTextNode('');
+							const cursor = document.createElement('span');
+							cursor.textContent = '|';
+							cursor.style.color = '#f97316';
+							cursor.style.WebkitTextFillColor = '#f97316';
+							cursor.style.fontWeight = '300';
+							cursor.style.animation = 'blink 1s step-end infinite';
+							
+							el.appendChild(textNode);
+							el.appendChild(cursor);
+							
+							let i = 0;
+							let isDeleting = false;
+							
+							function type() {
+								if (!isDeleting && i <= text.length) {
+									textNode.textContent = text.substring(0, i);
+									i++;
+									setTimeout(type, 150); // Typing speed
+								} else if (isDeleting && i >= 0) {
+									textNode.textContent = text.substring(0, i);
+									i--;
+									setTimeout(type, 75); // Deleting is faster
+								} else {
+									isDeleting = !isDeleting;
+									setTimeout(type, isDeleting ? 4000 : 500); // Pause before delete (4s) or re-type (0.5s)
+								}
+							}
+							
+							setTimeout(type, 500);
+						}
+					});
+				}, { threshold: 0.1 });
+
+				spans.forEach(el => observer.observe(el));
+			}
+
+			// Astro scripts are type="module" (deferred), so DOM is already parsed
+			initGlobalTypewriter();
+			document.addEventListener('astro:page-load', initGlobalTypewriter);
+		</script>
+
+		<style is:global>
+			@keyframes blink {
+				0%, 100% { opacity: 1; }
+				50% { opacity: 0; }
+			}
+		</style>
+	</body>
+</html>

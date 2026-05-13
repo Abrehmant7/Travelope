@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+
+// Load all posts
+const posts = Object.values(import.meta.glob("../posts/*.md", { eager: true }));
+
+// Load all images from the blog folder
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/blog/*.{jpeg,jpg,png,gif}",
+  { eager: true }
+);
+
+// Sort posts by date (newest first)
+const sortedPosts = posts.sort((a: any, b: any) => {
+  return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+});
+---
+
+<section class="py-24 bg-slate-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-black text-[#0a2540] uppercase tracking-wide mb-4">Latest <span class="text-[#f97316]">Articles</span></h2>
+      <p class="text-slate-600 font-medium max-w-2xl mx-auto text-lg">Expert advice, travel guides, and inspiration for your next journey.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {sortedPosts.map((post: any) => {
+        const imagePath = `/src/assets/blog/${post.frontmatter.image}`;
+        const image = images[imagePath]?.default;
+
+        return (
+          <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 group flex flex-col h-full">
+            <a href={`/blog/${post.frontmatter.slug}`} class="block relative h-64 overflow-hidden bg-slate-100">
+              {image && (
+                <Image 
+                  src={image} 
+                  alt={post.frontmatter.title} 
+                  widths={[400, 800]}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  format="webp"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                />
+              )}
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0a2540]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <div class="absolute top-4 left-4 flex gap-2">
+                {post.frontmatter.tags?.slice(0, 2).map((tag: string) => (
+                  <span class="bg-white/90 backdrop-blur-sm text-[#0a2540] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </a>
+            
+            <div class="p-8 flex flex-col flex-grow">
+              <div class="flex items-center text-sm text-slate-500 mb-4 font-medium">
+                <span>{new Date(post.frontmatter.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                <span class="mx-2">•</span>
+                <span class="text-[#f97316] font-bold">{post.frontmatter.author}</span>
+              </div>
+              
+              <h3 class="text-2xl font-bold text-[#0a2540] mb-3 line-clamp-2 leading-tight group-hover:text-[#f97316] transition-colors">
+                <a href={`/blog/${post.frontmatter.slug}`}>
+                  {post.frontmatter.title}
+                </a>
+              </h3>
+              
+              <p class="text-slate-600 mb-6 line-clamp-3 leading-relaxed flex-grow">
+                {post.frontmatter.excerpt}
+              </p>
+              
+              <div class="pt-6 border-t border-slate-100 mt-auto">
+                <a href={`/blog/${post.frontmatter.slug}`} class="inline-flex items-center font-bold text-[#0a2540] hover:text-[#f97316] transition-colors group/link">
+                  Read Full Article
+                  <svg class="w-5 h-5 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        )
+      })}
+    </div>
+    
+  </div>
+</section>

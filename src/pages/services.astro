@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchengenVisa from '../components/SchengenVisa.astro';
+import OurProcess from '../components/OurProcess.astro';
+import Cta from '../components/Cta.astro';
+import { Image } from 'astro:assets';
+
+import img1 from '../assets/service 1.jpg';
+import img2 from '../assets/service 2.jpg';
+import img3 from '../assets/service 3.jpg';
+import img4 from '../assets/service 4.jpg';
+import img5 from '../assets/service 5.jpg';
+
+const fullServices = [
+  {
+    title: "Destination Profiling",
+    desc: "We analyze your passport strength, travel history, and current visa policies to recommend the highest-probability vacation destinations. We completely remove the guesswork from your international travel plans.",
+    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    image: img1,
+  },
+  {
+    title: "Visa Appointments",
+    desc: "Skip the endless refreshing. We track and secure early embassy appointments across the globe for tourist and business visas, ensuring your application process is entirely friction-free and expedited.",
+    icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+    image: img2,
+  },
+  {
+    title: "Documentation Audits",
+    desc: "Rigorous pre-submission audits of your financial statements, cover letters, and itineraries to guarantee absolute compliance with strict embassy protocols before you ever submit.",
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+    image: img3,
+  },
+  {
+    title: "Bespoke Packages",
+    desc: "From luxury Maldivian resorts to rugged Icelandic expeditions, we curate end-to-end travel packages customized to your exact preferences, handling every logistic from touchdown to takeoff.",
+    icon: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z",
+    image: img4,
+  },
+  {
+    title: "Flight & Hotel Booking",
+    desc: "Access our global network of airline partners and luxury hotels for exclusive rates, flexible cancellations, and VIP upgrades you simply won't find on public booking engines.",
+    icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+    image: img5,
+  },
+  {
+    title: "24/7 Global Support",
+    desc: "Travel with absolute confidence knowing our dedicated support team is available around the clock to assist with emergencies, missed flights, or spontaneous itinerary additions anywhere in the world.",
+    icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z",
+    image: img1, // Reused
+  }
+];
+---
+
+<Layout title="Services | Travelope Premium Consultancy">
+  <!-- Inner Page Hero -->
+  <div class="relative pt-40 pb-28 overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1542314831-c6a4d14eff61?auto=format&fit=crop&q=80&w=2000" alt="Luxury Travel Services" fetchpriority="high" loading="eager" decoding="sync" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-[#0a2540]/80 mix-blend-multiply"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0a2540] via-transparent to-white"></div>
+    </div>
+    
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center mt-12 mb-8">
+      <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 text-white font-bold text-sm tracking-widest uppercase mb-6 shadow-sm border border-white/20 backdrop-blur-sm">What We Do</span>
+      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tight mb-8 drop-shadow-lg">Premium Travel <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f97316] to-[#fdba74]">Architecture</span></h1>
+      <p class="text-xl text-slate-200 font-medium max-w-3xl mx-auto leading-relaxed drop-shadow-md">Comprehensive services designed to eliminate borders. We handle the bureaucracy so you can experience the world seamlessly.</p>
+    </div>
+  </div>
+
+  <!-- Expanded Services List -->
+  <section class="py-24 bg-white border-b border-slate-100">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="space-y-32">
+        {fullServices.map((service, index) => (
+          <div class={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}>
+            
+            <!-- Image Side -->
+            <div class="w-full lg:w-1/2">
+              <div class="relative group rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] border border-slate-100">
+                <div class="absolute inset-0 bg-[#0a2540]/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                <Image 
+                  src={service.image} 
+                  alt={service.title} 
+                  widths={[400, 800]} 
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  format="webp"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                />
+              </div>
+            </div>
+
+            <!-- Content Side -->
+            <div class="w-full lg:w-1/2 space-y-6">
+              <div class="w-16 h-16 rounded-2xl bg-[#f97316]/10 flex items-center justify-center border border-[#f97316]/20 shadow-inner">
+                <svg class="w-8 h-8 text-[#f97316]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon} />
+                </svg>
+              </div>
+              <h2 class="text-3xl md:text-4xl font-extrabold text-[#0a2540] tracking-tight">{service.title}</h2>
+              <p class="text-lg text-slate-600 leading-relaxed font-medium">{service.desc}</p>
+              
+              <ul class="space-y-3 pt-4">
+                <li class="flex items-center gap-3 text-[#0a2540] font-bold">
+                  <div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[#f97316]">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  Dedicated Expert Assigned
+                </li>
+                <li class="flex items-center gap-3 text-[#0a2540] font-bold">
+                  <div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[#f97316]">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  End-to-End Handling
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull in other components. Next background should be slate-50 to continue pattern -->
+  <SchengenVisa />
+  <OurProcess />
+  <Cta />
+</Layout>

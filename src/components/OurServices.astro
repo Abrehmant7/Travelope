@@ -1,0 +1,87 @@
+---
+const services = [
+  {
+    title: "Destination Profiling",
+    desc: "We analyze your passport strength, travel history, and current visa policies to recommend the highest-probability vacation destinations.",
+    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+  {
+    title: "Visa Appointments",
+    desc: "Skip the endless refreshing. We track and secure early embassy appointments across the globe for tourist and business visas.",
+    icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+  },
+  {
+    title: "Documentation Audits",
+    desc: "Rigorous pre-submission audits of your financial statements, cover letters, and itineraries to guarantee compliance with embassy protocols.",
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+  },
+  {
+    title: "Bespoke Packages",
+    desc: "From luxury Maldivian resorts to rugged Icelandic expeditions, we curate end-to-end travel packages customized to your exact preferences.",
+    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+  {
+    title: "Flight & Hotel Booking",
+    desc: "Access our global network of airline partners and luxury hotels for exclusive rates, flexible cancellations, and VIP upgrades.",
+    icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+  },
+  {
+    title: "24/7 Global Support",
+    desc: "Travel with confidence knowing our dedicated support team is available around the clock to assist with emergencies or itinerary changes.",
+    icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z",
+  },
+];
+
+interface Props {
+  bgClass?: string;
+}
+const { bgClass = "bg-orange-50" } = Astro.props;
+---
+
+<section
+  class={`py-16 relative overflow-hidden border-b border-slate-200 ${bgClass}`}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <h2
+        class="text-4xl md:text-5xl font-extrabold text-[#0a2540] tracking-tight mb-6"
+      >
+        Our <span class="text-[#f97316]">Services</span>
+      </h2>
+      <p class="text-lg text-slate-600 font-medium">
+        Comprehensive travel architecture designed to eliminate borders. We
+        handle the bureaucracy so you can experience the world.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        services.map((service) => (
+          <div class="group bg-white border border-slate-100 p-8 rounded-2xl transition-all duration-500 hover:-translate-y-2 shadow-lg hover:shadow-[0_20px_40px_-10px_rgba(10,37,64,0.1)]">
+            <div class="w-14 h-14 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:border-[#f97316]/50 group-hover:bg-[#f97316]/10">
+              <svg
+                class="w-7 h-7 text-[#f97316]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d={service.icon}
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-extrabold text-[#0a2540] mb-3 group-hover:text-[#f97316] transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-slate-600 leading-relaxed font-medium transition-colors">
+              {service.desc}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

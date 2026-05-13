@@ -1,0 +1,169 @@
+---
+interface Props {
+  bgClass?: string;
+}
+const { bgClass = "bg-slate-50" } = Astro.props;
+---
+
+<section id="schengen-visa" class={`py-24 relative overflow-hidden border-b border-slate-200 scroll-mt-20 ${bgClass}`}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[#0a2540] tracking-tight mb-4">Schengen <span class="text-[#f97316]">Visa</span></h2>
+      <p class="text-slate-500 font-medium max-w-2xl mx-auto text-lg">Your gateway to 27 European countries with a single application.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+      
+      <!-- Educational Content (Left) -->
+      <div class="space-y-10">
+        <!-- Item 1 -->
+        <div class="pl-6 border-l-4 border-[#f97316]">
+          <h3 class="text-2xl font-bold text-[#0a2540] mb-3">What is Schengen</h3>
+          <p class="text-slate-600 leading-relaxed font-medium">
+            The Schengen area refers collectively to the 27 European countries united by a landmark multilateral agreement allowing free travel within and across its member states. The countries within the Schengen area have removed border control for travelers crossing between their borders. All the Schengen countries are located in mainland Europe, with the exception of Iceland and Malta.
+          </p>
+        </div>
+        
+        <!-- Item 2 -->
+        <div class="pl-6 border-l-4 border-[#f97316]">
+          <h3 class="text-2xl font-bold text-[#0a2540] mb-3">What is Schengen Visa</h3>
+          <p class="text-slate-600 leading-relaxed font-medium">
+            The Schengen visa is a document allowing you temporary access to the entire Schengen area; all 27 European member states. Travelers with Schengen visas can remain within the Schengen area for a short stay (up to 90 days within a 180-day time period).
+          </p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="pl-6 border-l-4 border-[#f97316]">
+          <h3 class="text-2xl font-bold text-[#0a2540] mb-3">Who Needs a Schengen Visa?</h3>
+          <p class="text-slate-600 leading-relaxed font-medium">
+            Citizens of countries that have not established a visa-free travel agreement with the Schengen member states must obtain a Schengen visa before traveling to Europe.
+          </p>
+        </div>
+      </div>
+
+      <!-- Graphic/Animation (Right) -->
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-[#f97316]/20 to-transparent rounded-[3rem] opacity-50 blur-2xl"></div>
+        <div class="relative rounded-[2rem] bg-white p-3 shadow-2xl shadow-slate-300/50 aspect-[4/5] md:aspect-square overflow-hidden border border-slate-100 group">
+          <!-- Animated SVG Background -->
+          <div class="absolute inset-2 rounded-[1.5rem] bg-[#0a2540] overflow-hidden">
+            <!-- Glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-full h-full bg-gradient-to-tr from-[#f97316]/20 to-transparent rounded-full blur-[80px] opacity-60"></div>
+            
+            <svg class="absolute inset-0 w-full h-full -translate-y-6 md:-translate-y-8" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+              <!-- Glowing background effect -->
+              <circle cx="50" cy="50" r="28" fill="#f97316" class="opacity-10 animate-pulse" />
+              
+              <!-- EU Stars (12 nodes in a circle, representing Schengen) -->
+              <g fill="#f97316">
+                <circle cx="50" cy="18" r="1.5" />
+                <circle cx="66" cy="22.2" r="1.5" />
+                <circle cx="77.7" cy="34" r="1.5" />
+                <circle cx="82" cy="50" r="1.5" />
+                <circle cx="77.7" cy="66" r="1.5" />
+                <circle cx="66" cy="77.8" r="1.5" />
+                <circle cx="50" cy="82" r="1.5" />
+                <circle cx="34" cy="77.8" r="1.5" />
+                <circle cx="22.3" cy="66" r="1.5" />
+                <circle cx="18" cy="50" r="1.5" />
+                <circle cx="22.3" cy="34" r="1.5" />
+                <circle cx="34" cy="22.2" r="1.5" />
+              </g>
+
+              <!-- Flight Path Dotted Line -->
+              <circle cx="50" cy="50" r="32" fill="none" stroke="#ffffff" stroke-width="0.3" stroke-dasharray="1,2" class="opacity-40" />
+
+              <!-- Orbiting Airplane -->
+              <g class="origin-center animate-[spin_15s_linear_infinite]">
+                <!-- Positioned at top center on the circle (50, 18) -->
+                <!-- Translate to center it properly (24x24 SVG) -->
+                <g transform="translate(38, 6) rotate(90 12 12)">
+                  <path d="M22 16.92v-1.12l-8.5-5.36V3.5a1.5 1.5 0 0 0-3 0v6.94L2 15.8v1.12l8.5-2.66v5.42l-2.5 1.88V23l4-1.12 4 1.12v-1.44l-2.5-1.88v-5.42L22 16.92z" fill="#ffffff" class="opacity-90"/>
+                </g>
+                <!-- Tail trail -->
+                <path d="M 50 18 A 32 32 0 0 0 18 50" fill="none" stroke="#f97316" stroke-width="0.8" class="opacity-80"/>
+              </g>
+
+              <!-- Central Passport -->
+              <g transform="translate(38, 34)">
+                <!-- Passport Cover -->
+                <rect x="0" y="0" width="24" height="32" rx="2" fill="none" stroke="#ffffff" stroke-width="1.5" class="opacity-90"/>
+                <!-- Globe/Map Icon inside -->
+                <circle cx="12" cy="12" r="5" fill="none" stroke="#f97316" stroke-width="1" class="opacity-90"/>
+                <path d="M12 7 Q16 12 12 17 M12 7 Q8 12 12 17" fill="none" stroke="#f97316" stroke-width="0.8" class="opacity-90"/>
+                <line x1="7.5" y1="12" x2="16.5" y2="12" stroke="#f97316" stroke-width="0.8" class="opacity-90"/>
+                <!-- Text Lines -->
+                <line x1="6" y1="22" x2="18" y2="22" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" class="opacity-80"/>
+                <line x1="6" y1="26" x2="14" y2="26" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" class="opacity-80"/>
+              </g>
+            </svg>
+          </div>
+          
+          <!-- Floating Badge -->
+          <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-[0_10px_30px_rgba(10,37,64,0.15)] border border-white flex items-center gap-4 group-hover:-translate-y-2 transition-transform duration-500">
+            <div class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-[#f97316] border border-orange-100">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.204 11h9.592M8.397 15H15M12 3v18m0-18c-2.348 0-4.5.836-6.196 2.223M12 3c2.348 0 4.5.836 6.196 2.223M12 21c-2.348 0-4.5-.836-6.196-2.223M12 21c2.348 0 4.5-.836 6.196-2.223" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-2xl font-black text-[#0a2540]">27</div>
+              <div class="text-xs font-bold text-slate-500 tracking-widest uppercase">Member States</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3-Step Process (Bottom) -->
+    <div class="bg-[#0a2540] rounded-[2rem] p-8 md:p-12 shadow-2xl relative overflow-hidden mt-12">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-[#f97316] rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+      
+      <div class="text-center mb-10 relative z-10">
+        <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">What We <span class="text-[#f97316]">Do</span></h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+        
+        <!-- Step 1 -->
+        <div class="relative">
+          <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f97316] mb-6 shadow-inner">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-3">Prepare Visa Application</h4>
+          <p class="text-slate-300 text-sm leading-relaxed font-medium">We meticulously prepare your entire application, handle all the complex paperwork, and build a flawless dossier that maximizes your chances of approval.</p>
+          <!-- Desktop Arrow Connector -->
+          <div class="hidden md:block absolute top-8 -right-4 text-slate-600">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative">
+          <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f97316] mb-6 shadow-inner">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-3">Submit Visa Documents</h4>
+          <p class="text-slate-300 text-sm leading-relaxed font-medium">We secure premium fast-track appointments and guide you through the submission process, ensuring all fees and biometrics are handled seamlessly.</p>
+          <!-- Desktop Arrow Connector -->
+          <div class="hidden md:block absolute top-8 -right-4 text-slate-600">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" /></svg>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative">
+          <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f97316] mb-6 shadow-inner">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-3">Await Visa Decision</h4>
+          <p class="text-slate-300 text-sm leading-relaxed font-medium">We proactively track your application status, handle any embassy inquiries on your behalf, and ensure your visa and passport are safely delivered.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
