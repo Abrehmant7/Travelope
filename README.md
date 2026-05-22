@@ -1,3 +1,21 @@
+# ✈️ Travelpe (Travelope)
+
+Travelpe is a modern, premium web application built for a forward-thinking travel and visa consultation agency. Designed with a focus on clean aesthetics and performance, it helps users seamlessly navigate complex visa processes and discover destinations tailored to their unique travel profiles.
+
+## ✨ Features
+
+*   **Premium Modern Design:** A sophisticated, glassmorphic UI featuring a dark green (`#0A2E1E`) and gold (`#D4AF37`) color palette.
+*   **Blazing Fast Performance:** Built on top of Astro's island architecture, ensuring zero unnecessary JavaScript and lightning-fast page loads.
+*   **Responsive Layout:** Fully optimized for mobile, tablet, and desktop viewing with an intuitive mobile hamburger menu.
+*   **SEO Optimized:** Clean semantic HTML and customizable metadata for better search engine visibility.
+
+## 🛠️ Tech Stack
+
+*   **Framework:** [Astro](https://astro.build/) - The web framework for content-driven websites.
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework for rapid UI development.
+*   **Typography:** [Google Fonts](https://fonts.google.com/) - Using *Inter* for clean body text and *Plus Jakarta Sans* for premium headings.
+
+
 # Astro Starter Kit: Minimal
 
 ```sh
@@ -38,6 +56,4 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
